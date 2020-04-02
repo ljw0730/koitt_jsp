@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSP - 회원가입 예제</title>
+		<script type="text/javascript">
+			function check() {
+				
+			}
+		
+		</script>
+	</head>
+	<body>
+		<form action="ex0402_02.jsp" name="login" method="post">
+			<label for="id">아이디</label>
+			<input type="text" name="id" id="id" /><br/>
+			<label for="pw">패스워드</label>
+			<input type="password" name="pw" id="pw" /><br/>
+			<label for="name">이름</label>
+			<input type="text" name="name" id="name" /><br/>
+			
+			<p>취미</p>
+			<input type="checkbox" name="hobby" id="book" value="book" />
+			<label for="book">독서</label> 
+			<input type="checkbox" name="hobby" id="cook" value="cook" />
+			<label for="cook">요리</label> 
+			<input type="checkbox" name="hobby" id="run" value="run" />
+			<label for="run">조깅</label> 
+			<input type="checkbox" name="hobby" id="swim" value="swim" />
+			<label for="swim">수영</label> 
+			<br/>
+			
+			<p>전공</p>
+			<input type="radio" name="major" id="kor" value="kor"/>
+			<label for="kor">국어국문학과</label>
+			<input type="radio" name="major" id="eng" value="eng"/>
+			<label for="eng">영어영문학과</label>
+			<input type="radio" name="major" id="math" value="math"/>
+			<label for="math">수학과</label>
+			<input type="radio" name="major" id="design" value="design"/>
+			<label for="design">디자인학과</label>
+			<br/>
+			
+			<p>주소</p>
+			<select name="address">
+				<option value="" disabled selected>선택</option>
+				<option value="seoul">서울</option>
+				<option value="gyeonggi">경기</option>
+				<option value="incheon">인천</option>
+			</select>
+			<br/>
+			
+			<!-- 
+			<input type="button" onclick="" value="전송" />
+			 -->
+			<input type="submit" value="전송" />
+			<input type="reset" value="취소" />
+			
+		
+		</form>
+	</body>
+</html>
