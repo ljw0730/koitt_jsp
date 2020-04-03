@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSP 성인인증 연습</title>
+		<script type="text/javascript">
+			function check() {
+				if(form.age.value == "") {
+					alert("나이를 입력해 주세요.");
+					form.age.focus();
+					return false;
+				}
+				
+				return form.submit();
+			}
+		
+		</script>
+	</head>
+	<body>
+		<form action="ex0403_12.jsp" name="form" method="post">
+			성인인증<input type="text" name="age" id="age"> <br/>
+			
+			<input type="button" onclick="check()" value="인증" />					
+		</form>
+	</body>
+</html>

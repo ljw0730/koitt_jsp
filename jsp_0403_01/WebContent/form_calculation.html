@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex0403_06.jsp로 값 넘기기</title>
+		<script type="text/javascript">
+			function comfirm() {
+				if(form_cal.start.value == "") {
+					alert("시작 값을 입력해 주세요.");
+					form_cal.start.focus();
+					return false;
+				}
+				
+				if(form_cal.end.value == "") {
+					alert("끝 값을 입력해 주세요.");
+					form_cal.end.focus();
+					return false;
+				}
+				
+				var start1 = parseInt(form_cal.start.value);
+				var end1 = parseInt(form_cal.end.value);
+				
+				if(start1 > end1) {
+					alert("시작 값이 더 큽니다.");
+					form_cal.start.focus();
+					return false;
+				}
+				return form_cal.submit();
+			}
+		
+		</script>
+	</head>
+	<body>
+		<h3>[범위]</h3>
+		<form action="ex0403_06.jsp" name="form_cal" method="get">
+			<label for="start">시작 값</label>
+			<input type="text" name="start" id="start" /><br/>	
+			<label for="end">끝 값 </label>
+			<input type="text" name="end" id="end" /><br/>
+			
+			<button name="cal_btn" onclick="comfirm(); return false;">계산</button>
+			<input type="reset" value="취소"/>
+		
+		
+		</form>
+		
+	
+	
+	
+	</body>
+</html>
