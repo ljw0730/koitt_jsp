@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSP - bean 연습 - 데이터를 넘겨줄 from</title>
+		<script type="text/javascript">
+			function check() {
+				
+				// 한글만
+				var name_ch = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/;
+				if(join.name.value == "") {
+					alert("이름을 입력해 주세요.");
+					join.name.focus();
+					return false;
+				}
+				if(!(name_ch.test(join.name.value))) {
+					alert("이름은 한글만 입력 가능합니다.");
+					join.name.focus();
+					return false;
+				}
+				
+				// 소문자, 대문자, 숫자 각각 1개이상
+				var id_ch = (/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/);
+				if(join.id.value == "") {
+					alert("아이디를 입력해 주세요.");
+					join.id.focus();
+					return false;
+				}
+				if(!(id_ch.test(join.id.value))) {
+					alert("아이디는 소문자, 대문자, 숫자가 각각 1개 이상 들어가야 합니다.");
+					join.id.focus();
+					return false;
+				}
+			
+				// 숫자, 특수문자 각각 1개 이상
+				var pw_ch = (/(?=.*[0-9])(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])/);
+				if(join.pw1.value == "") {
+					alert("패스워드를 입력해 주세요.");
+					join.pw1.focus();
+					return false;
+				}
+				if(!(pw_ch.test(join.pw1.value))) {
+					alert("패스워드는 숫자, 특수문자가 각각 1개 이상 들어가야 합니다.");
+					join.pw1.focus();
+					return false;
+				}
+				
+				if(join.pw1.value != join.pw2.value) {
+					alert("패스워드와 패스워드 확인이 일치하지 않습니다. 다시 입력해 주세요.");
+					join.pw1.value = "";
+					join.pw2.value = "";
+					join.pw1.focus();
+					return false;
+				}
+				
+				if(join.gender.value == "") {
+					alert("성별을 선택해 주세요.");
+					return false;
+				}
+				
+				if(join.address.value == '') {
+					alert("주소를 선택해 주세요.");
+					return false;
+				}
+				
+				return join.submit();
+			}
+		
+		</script>
+	
+	</head>
+	<body>
+	<!-- 이름, 아이디, 패스워드, 패스워드 확인, 취미, 성별, 주소 
+	     을 입력 받아 ex04080_05.jsp에서 출력 해보세요.
+	-->
+	<!-- 이름: 한글만 / 아이디: 소문자, 대문자, 숫자 1개이상 -->
+	<!-- 패스워드 : 숫자, 특수문자 1개 이상 -->
+	<h2>회 원 가 입</h2>
+	<form action="ex0408_05.jsp" name="join" method="post">
+		<label for="name">이름 : </label>
+		<input type="text" name="name" id="name"/><br/>
+		<label for="id">ID : </label>
+		<input type="text" name="id" id="id"/><br/>
+		<label for="pw1">패스워드 : </label>
+		<input type="password" name="pw1" id="pw1" /><br/>
+		<label for="pw2">패스워드 확인 : </label>
+		<input type="password" name="pw2" id="pw2" /><br/>
+		
+		<label for="">성별</label>
+		<input type="radio" name="gender" id="gender_m" value="m"/>
+		<label for="gender_m">남성</label>
+		<input type="radio" name="gender" id="gender_w" value="w"/>
+		<label for="gender_w">여성</label>
+		<br/>
+		
+		<label for="">주소</label>
+		<select name="address">
+			<option value="" selected disabled>선택</option>
+			<option value="seoul">서울</option>
+			<option value="gyeonggi">경기</option>
+			<option value="incheon">인천</option>
+		</select>
+		<br/>
+		
+		<button onclick="check(); return false;">가입하기</button>
+		<input type="reset" value="취소" />
+	
+	</form>
+	
+	</body>
+</html>
