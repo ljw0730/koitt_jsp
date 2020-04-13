@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSP - DB 연동 연습 form</title>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="js/prefixfree.dynamic-dom.min.js"></script>
+		<script type="text/javascript">
+		
+			$(document).ready(function() {
+				$("#select_box").change(function () {
+					var select = $("#select_box option:selected").val();
+					if(select == "sch_name") {
+						$("#end").hide();
+						$("#start_span").text("이름 전체 또는 일부를 입력해주세요.");
+						$("#end_span").hide();
+					}
+					else if (select == "sch_salary") {
+						$("#end").show();
+						$("#start_span").text("부터");
+						$("#end_span").show();
+					}
+				});	
+			});
+			
+		
+			function check() {
+				if(form.search_type.value == "") {
+					alert("원하는 검색을 선택해 주세요.");
+					form.search_type.focus();
+					return false;
+				}
+				if(form.sort_type.value == "") {
+					alert("원하는 정렬기준을 선택해 주세요.");
+					form.sort_type.focus();
+					return false;
+				}
+				
+				
+				if(form.search_type.value == "sch_name") {
+					var ch_name = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z]+$/
+
+ 					if(form.start.value == "") {
+						alert("이름을 입력해 주세요.");
+						form.start.focus();
+						return false;
+					} 
+					
+					if(!(ch_name.test(form.start.value))) {
+						alert("이름은 영문과 국문만 가능합니다.");
+						form.start.focus();
+						return false;
+					}
+					
+ 					if(form.end.value != "") {
+						alert("앞의 입력란에만 입력해 주세요.");
+						form.end.value="";
+						form.start.focus();
+						return false;
+					}
+				}
+				else if(form.search_type.value == "sch_salary") {
+					var ch_salary = /^[0-9]{1,}$/;
+					if(form.start.value == "") {
+						alert("최저금액을 입력해 주세요.");
+						form.start.focus();
+						return false;
+					}
+					if(form.end.value == "") {
+						alert("최고금액을 입력해 주세요.");
+						form.end.focus();
+						return false;
+					}
+					
+					if(!(ch_salary.test(form.start.value))) {
+						alert("숫자만 입력 가능합니다.");
+						form.start.focus();
+						return false;
+					}
+					if(!(ch_salary.test(form.end.value))) {
+						alert("숫자만 입력 가능합니다.");
+						form.end.focus();
+						return false;
+					}
+				
+					if(parseInt(form.start.value) > parseInt(form.end.value)) {
+						alert("첫번째 숫자가 두번째 숫자 보다 큽니다. 다시 입력해 주세요.");
+						form.start.value="";
+						form.end.value="";
+						form.start.focus();
+						return false;
+					}
+				}
+				return form.submit();
+			}
+		
+		
+		</script>
+		
+		
+	</head>
+	<body>
+		<form action="ex0413_06.jsp" name="form" method="post">
+			<h2>이름/월급 범위 검색</h2>
+		
+			<select name="search_type" id="select_box">
+				<option value="" selected disabled>검색선택</option>
+				<option id="sch_name" value="sch_name">이름검색</option>
+				<option id="sch_salary" value="sch_salary">월급검색</option>
+			</select>
+			<select name="sort_type">
+				<option value="" selected disabled>정렬선택</option>
+				<option value="employee_id_low">사원번호 낮은 기준</option>
+				<option value="employee_id_high">사원번호 높은 기준</option>
+				<option value="salary_low">월급 낮은 기준</option>
+				<option value="salary_high">월급 높은 기준</option>
+			
+			</select>			
+			
+			<br/>
+			
+			<input type="text" name="start" id="start" /><span id="start_span">부터</span> <br/>
+			<input type="text" name="end" id="end" /><span id=end_span>까지</span><br/>
+			
+			<input type="button" value="검색" onclick="check()"/>
+			
+		
+		
+		</form>
+	</body>
+</html>
