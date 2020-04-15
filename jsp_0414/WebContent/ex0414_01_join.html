@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JSP - DB이용 회원가입 연습 (회원가입 페이지)</title>
+	<script type="text/javascript">
+		function check() {
+			var id_ch = /^[0-9|a-z|A-Z]*$/;
+			
+			if(join.id.value == "") {
+				alert("아이디를 입력해 주세요.");
+				join.id.focus();
+				return false;
+			}
+			
+			if(!(id_ch.test(join.id.value))) {
+				alert("아이디는 영문 소문자, 대문자, 숫자만 입력 가능합니다.");
+				join.id.focus();
+				return false;
+			}
+			
+			var pw_ch = /^[0-9]{1,}$/;
+			
+			if(join.pw1.value == "") {
+				alert("패스워드를 입력해 주세요.");
+				join.pw1.focus();
+				return false;
+			}
+			
+			if(!(pw_ch.test(join.pw1.value))) {
+				alert("패스워드는 숫자만 입력 가능합니다.");
+				join.pw1.focus();
+				return false;
+			}
+			
+			if(join.pw2.value == "") {
+				alert("패스워드 확인을 입력해 주세요.");
+				join.pw2.focus();
+				return false;
+			}
+			
+			if(join.pw1.value != join.pw2.value) {
+				alert("패스워드와 패스워드 확인이 일치하지 않습니다. \n다시 입력해 주세요.");
+				join.pw1.value = "";
+				join.pw2.value = "";
+				join.pw1.focus();
+				return false;
+			}
+			
+			var name_ch = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+$/;
+			
+			if(join.name.value == "") {
+				alert("이름을 입력해 주세요.");
+				join.name.focus();
+				return false;
+			}
+			
+			if(!(name_ch.test(join.name.value))) {
+				alert("이름은 한글만 입력 가능합니다.");
+				join.name.focus();
+				return false;
+			}
+
+			var phone_ch = /^[0-9]{4,4}$/;
+			
+			if(join.phone1.value == "") {
+				alert("전화번호를 선택해 주세요.");
+				join.phone1.focus();
+				return false;
+			}
+			
+			if(join.phone2.value == "") {
+				alert("전화번호를 입력해 주세요.");
+				join.phone2.focus();
+				return false;
+			}
+			
+			if(!(phone_ch.test(join.phone2.value))) {
+				alert("전화번호는 4 자리 숫자만 입력 가능합니다.");
+				join.phone2.focus();
+				return false;
+			}
+			
+			if(join.phone3.value == "") {
+				alert("전화번호를 입력해 주세요.");
+				join.phone3.focus();
+				return false;
+			}
+			
+			if(!(phone_ch.test(join.phone3.value))) {
+				alert("전화번호는 4 자리 숫자만 입력 가능합니다.");
+				join.phone3.focus();
+				return false;
+			}
+			
+			if(join.gender.value == "") {
+				alert("성별을 선택해 주세요.");
+				join.gender.focus();
+				return false;
+			}
+		
+			return join.submit();
+		}
+	
+	</script>
+
+
+</head>
+<body>
+	<form action="Join_Ok" name="join" method="post">
+		<h2> 회 원 가 입 </h2>
+		
+		<label for="id">아이디</label>
+		<input type="text" name="id" id="id" autofocus /><span> * 아이디는 영문, 숫자만 가능</span> <br/>
+		<label for="pw1">패스워드</label>
+		<input type="password" name="pw1" id="pw1" /> <br/>
+		<label for="pw2">패스워드 확인</label>
+		<input type="password" name="pw2" id="pw2" /> <br/>
+		<label for="name">이름</label>
+		<input type="text" name="name" id="name" /><span> * 이름은 한글만 가능</span>  <br/>
+		
+		
+		<label for="">전화번호</label>
+		<select name="phone1">
+			<option value="" selected disabled>선택</option>
+			<option value="010" >010</option>
+			<option value="011" >011</option>
+			<option value="016" >016</option>
+			<option value="017" >017</option>
+			<option value="018" >018</option>
+			<option value="019" >019</option>
+		</select>
+		<span> - </span>
+		<input type="text" name="phone2" />
+		<span> - </span>
+		<input type="text" name="phone3" /> 
+		<br/>
+		
+		<label for="">성별:</label>
+		<input type="radio" name="gender" value="남자" id="man">
+		<label for="man">남자</label>
+		<input type="radio" name="gender" value="여자" id="woman">
+		<label for="woman">여자</label>
+		<br/>
+		
+		<input type="button" value="회원가입" onclick="check()"/>
+		<input type="reset" value="취소" />
+	
+	
+	</form>
+
+</body>
+</html>
